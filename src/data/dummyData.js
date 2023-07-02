@@ -7,6 +7,9 @@ export const dummyMobileData = writable(
         { company: "One plus", model: "10R" },
         { company: "Goole", model: "pixel 7" },
     ]
-) 
+)
 
-const dummyCarsData = writable()
+export const dummyCarsData = writable([
+    { id: 1, company: "volkswagen", models: ["Polo GT", "Tiguan"] },
+    { id: 2, company: "BMW", models: ["M2", "X3",] },
+])
