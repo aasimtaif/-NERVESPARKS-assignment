@@ -1,5 +1,6 @@
 <script>
 	import { dummyCarsData } from '../data/dummyData';
+	import Modal from './Modal.svelte';
 	let company = '';
 	let models = new Array(0);
 	let newCar = '';
@@ -19,41 +20,48 @@
 	};
 </script>
 
-<div
-	class="modal z-50 fixed w-full h-full top-0 left-0 flex items-center justify-center p-8 lg:p-0"
->
-	<div class="bg-grey w-full lg:h-max lg:w-1/2 mx-auto rounded-lg shadow-xl z-50 overflow-y-auto">
-		<div class="content p-8">
-			<div
-				class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"
-			>
-				<input
-					type="text"
-					placeholder="Company name"
-					bind:value={company}
-					class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
-				/>
-			</div>
-			<div
-				class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"
-			>
-				<input
-					type="text"
-					placeholder="Model name "
-					bind:value={newCar}
-					class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
-				/>
-				<button
-					class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-					on:click={() => {
-						handleAddCar();
-					}}>+</button
-				>
-			</div>
-			<button
-				class="p-2.5 mt-3 mr-auto rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-				on:click={() => handleAddCompany()}>Add company</button
-			>
-		</div>
+<Modal>
+	<div class="relative">
+		<button class="text-red-600 absolute top-1 right-3">X</button>
 	</div>
-</div>
+	<br />
+	<div class="content p-8 flex flex-col items-center space-y-4">
+		<input
+			class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+			type="text"
+			placeholder="Company name"
+			bind:value={company}
+		/>
+
+		<input
+			class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+			type="text"
+			placeholder="Model name "
+			bind:value={newCar}
+		/>
+		<button
+			on:click={() => {
+				handleAddCar();
+			}}
+			class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+		>
+			<span
+				class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+			>
+				Add Model
+			</span>
+		</button>
+		<button
+		on:click={() => handleAddCompany()}
+			class="
+		mt-auto
+		relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+		>
+			<span
+				class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+			>
+			submit
+			</span>
+		</button>
+	</div>
+</Modal>
