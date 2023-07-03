@@ -1,7 +1,7 @@
 <script>
 	export let data;
 	import { dummyCarsData } from '../../../data/dummyData';
-
+	let filter = '';
 	let showModal = false;
 	let newCar = '';
 	const handleShowHideModal = () => {
@@ -24,7 +24,11 @@
 	};
 </script>
 
-{#each $dummyCarsData.find((company) => company.id == data.params).models as model}
+<input bind:value={filter} placeholder="filter" />
+
+{#each $dummyCarsData
+	.find((company) => company.id == data.params)
+	.models.filter((model) => model.toLowerCase().includes(filter.toLowerCase())) as model}
 	<p>{model}</p>
 {/each}
 

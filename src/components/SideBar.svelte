@@ -1,48 +1,49 @@
 <script lang="ts">
 	import { dummyCarsData } from '../data/dummyData';
-	console.log($dummyCarsData);
 	let showModal = false;
-	let company = '';
-	let models = new Array(0);
-	let newCar = '';
+	let filter=""
 	const handleOpenCloseModal = () => {
 		showModal = !showModal;
+		console.log(showModal)
 	};
-	const handleAddCar = () => {
-		models.push(newCar);
-		console.log(models);
-		newCar = '';
-	};
-	const handleAddCompany = () => {
-		dummyCarsData.update((currentData) => [
-			...currentData,
-			{ id: currentData.length + 1, company, models }
-		]);
-		console.log($dummyCarsData);
-        showModal = !showModal;
-	};
+	import SideBarModal from './SideBarModal.svelte';
+	console.log($dummyCarsData);
 </script>
 
-{#each $dummyCarsData as data}
-	<div>
-		<a href={`/details/${data.id}`}>
-			<p>{data.company}</p>
-		</a>
-	</div>
-{/each}
 
-{#if !showModal}
-	<button on:click={handleOpenCloseModal}>Add card</button>
-{/if}
-
-{#if showModal}
-	<input placeholder="Company name" bind:value={company} />
-	<br />
-	<input placeholder="Model name " bind:value={newCar} /><button
-		on:click={() => {
-			handleAddCar();
-		}}>+</button
+<div
+	class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[250px] overflow-y-auto text-center bg-gray-900"
+>
+	<div
+		class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"
 	>
-	<br />
-	<button on:click={() => handleAddCompany()}>Add company</button>
-{/if}
+		<input
+			type="text"
+			placeholder="Search"
+			class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
+			bind:value={filter}
+		/>
+	</div>
+
+	{#each $dummyCarsData.filter(data => data.company.toLowerCase().includes(filter.toLowerCase())) as data}
+		<div
+			class="p-2.5  flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+		>
+			<a href={`/details/${data.id}`}>
+				<span class="text-[15px] ml-4 text-gray-200 font-bold">{data.company}</span>
+			</a>
+		</div>
+	{/each}
+	{#if !showModal}
+		<div
+			class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
+		>
+			<button on:click={handleOpenCloseModal} class="text-[15px] ml-4 text-gray-200 font-bold"
+				>+ ADD Company</button
+			>
+		</div>
+	{/if}
+	{#if showModal}
+		<SideBarModal />
+	{/if}
+</div>
