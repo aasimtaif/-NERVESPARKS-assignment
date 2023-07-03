@@ -5,6 +5,7 @@
 		console.log(input, $dummyMobileData);
         dummyMobileData.update(currentData => [...currentData,input] );
 	};
+	console.log(input)
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
