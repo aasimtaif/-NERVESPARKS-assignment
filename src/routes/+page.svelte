@@ -41,6 +41,6 @@
 	</div>
 </div>
 
-{#if isShow}
-	<Page2Form />
-{/if}
+
+	<Page2Form  isShow={isShow}/>
+

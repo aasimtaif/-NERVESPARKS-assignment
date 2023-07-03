@@ -34,7 +34,7 @@
 			</a>
 		</div>
 	{/each}
-	{#if !showModal}
+
 		<div
 			class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
 		>
@@ -42,8 +42,9 @@
 				>+ ADD Company</button
 			>
 		</div>
-	{/if}
-	{#if showModal}
-		<SideBarModal />
-	{/if}
+	<a class="text-white" href="/">Navigate to Page 1 </a>
+
+
+		<SideBarModal  showModal={showModal}/>
+
 </div>
